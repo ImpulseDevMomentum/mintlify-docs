@@ -59,20 +59,20 @@
     }
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "nulldrop.ico",
+    "dark": "nulldrop.ico"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "mailto:contact@nulltools.xyz"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://dashboard.mintlify.com"
+      "label": "Drop",
+      "href": "https://nulldrop.xyz/"
     }
   },
   "contextual": {
