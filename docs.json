@@ -23,10 +23,10 @@
         ]
       },
       {
-        "tab": "API reference",
+        "tab": "API Reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "API Documentation",
             "pages": [
               "api-reference/introduction"
             ]
@@ -39,6 +39,14 @@
               "api-reference/endpoint/delete",
               "api-reference/endpoint/webhook"
             ]
+          }
+        ]
+      },
+      {
+        "tab": "SDK Reference",
+        "groups": [
+          {
+            "group": "SDK Documentation"
           }
         ]
       }
