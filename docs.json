@@ -50,6 +50,15 @@
             "pages": [
               "sdk-reference/introduction"
             ]
+          },
+          {
+            "group": "Endpoint examples",
+            "pages": [
+              "sdk-reference/endpoint/get",
+              "sdk-reference/endpoint/create",
+              "sdk-reference/endpoint/delete",
+              "sdk-reference/endpoint/webhook"
+            ]
           }
         ]
       }
