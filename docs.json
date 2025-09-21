@@ -46,7 +46,10 @@
         "tab": "SDK Reference",
         "groups": [
           {
-            "group": "SDK Documentation"
+            "group": "SDK Documentation",
+            "pages": [
+              "sdk-reference/introduction"
+            ]
           }
         ]
       }
