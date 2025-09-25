@@ -1,31 +1,28 @@
 ---
-title: "Introduction"
-description: "Example section for showcasing API endpoints"
+title: "Null Drop API"
+description: "Reference for the Null Drop v1 REST API"
 ---
 
-s
+## Overview
 
-<Note>
-  If you're not looking to build API reference documentation, you can delete\
-  this section by removing the api-reference folder.
-</Note>
+Null Drop v1 provides a simple REST API to upload files and manage your uploads.
 
-## Welcome
+- Base URL: `https://nulldrop.xyz/api/v1`
+- Auth: Bearer token (pass your API key in the `Authorization` header)
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+```http
+Authorization: Bearer <your_api_key>
+```
 
-<Card title="Plant Store Endpoints" icon="leaf" href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json">
+## Endpoints
+
+- `POST /upload` – Upload a file (multipart form-data, field `file`)
+- `GET /files` – List your files
+- `GET /files/{id}` – Get a single file
+- `DELETE /files/{id}` – Delete a file
+
+See the OpenAPI spec used for this section:
+
+<Card title="OpenAPI – Null Drop" icon="code" href="/api-reference/openapi.json">
   View the OpenAPI specification file
 </Card>
-
-## Authentication
-
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
-
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
-```
