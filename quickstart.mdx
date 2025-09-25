@@ -3,48 +3,51 @@ title: "Quick Start"
 description: "Get started with Null Drop in 3 simple steps"
 ---
 
-## Security Features
+## 1) Create an API key
 
-<Columns cols={2}>
-  <Card title="AES-256 Encryption" icon="shield">
-    All files are encrypted with military-grade encryption before upload.
-  </Card>
-  <Card title="Zero-Knowledge" icon="eye-slash">
-    We can't see your files - they're encrypted on your device first.
-  </Card>
-  <Card title="Secure Storage" icon="database">
-    Files are stored with additional encryption layers in our secure infrastructure.
-  </Card>
-</Columns>
+1. Go to `Manage → API Keys` in the app
+2. Click "Create key" and copy the value (treat as secret)
 
-## Next Steps
+## 2) Upload a file (cURL)
 
-<Card title="Explore Features" icon="compass" href="/features">
-  Discover advanced features like team management and API integration.
+```bash
+curl -X POST \
+  -H "Authorization: Bearer <API_KEY>" \
+  -F "file=@/path/to/file.png" \
+  https://nulldrop.xyz/api/v1/upload
+```
+
+Response (201):
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "file_123",
+    "filename": "file.png",
+    "size": 12345,
+    "mimeType": "image/png",
+    "downloadUrl": "https://nulldrop.xyz/api/v1/files/file_123/download",
+    "shareUrl": "https://nulldrop.xyz/share/abc123",
+    "uploadedAt": "2025-01-01T12:00:00.000Z"
+  }
+}
+```
+
+## 3) List your files (fetch)
+
+```ts
+await fetch('https://nulldrop.xyz/api/v1/files', {
+  headers: { Authorization: `Bearer ${API_KEY}` }
+}).then(r => r.json())
+```
+
+## Tips
+
+- Rate limits are returned via headers: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`.
+- Common errors: `NO_FILE`, `INVALID_FILE_TYPE`, `FILE_TOO_LARGE`, `STORAGE_LIMIT_EXCEEDED`.
+- Base URL: `https://nulldrop.xyz/api/v1`
+
+<Card title="API Reference" icon="code" href="/api-reference/introduction">
+  Explore all endpoints and schemas.
 </Card>
-
-<Card title="API Documentation" icon="code" href="/api-reference">
-  Learn how to integrate Null Drop into your applications.
-</Card>
-
-<Card title="Get Support" icon="headphones" href="/support">
-  Need help? Contact our support team or browse the knowledge base.
-</Card>
-
-## Common Use Cases
-
-### For Individuals
-
-- **Personal file storage** - Keep your files secure and accessible
-- **Quick sharing** - Share photos, documents, and media with friends
-- **Backup solution** - Encrypted backup for important files
-
-### For Developers
-
-- **API integration** - Automate file uploads in your applications
-- **Webhook support** - Get notified when files are uploaded
-- **Custom domains** - Use your own domain for file sharing
-
----
-
-**Ready to start?** [Create your account](https://nulldrop.xyz) and begin sharing files securely in minutes!
