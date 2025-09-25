@@ -1,0 +1,55 @@
+---
+title: "Examples"
+description: "Browser and Node examples for the Null Drop SDK"
+---
+
+## Browser upload (vanilla)
+
+```html
+<input type="file" id="f" />
+<script type="module">
+  import { NullDropClient } from '@nulldrop/sdk'
+  const client = new NullDropClient({ apiKey: '<API_KEY>' })
+  document.getElementById('f').addEventListener('change', async (e) => {
+    const file = e.target.files[0]
+    const uploaded = await client.upload(file)
+    console.log(uploaded.id, uploaded.downloadUrl)
+  })
+</script>
+```
+
+## Node (TypeScript)
+
+```ts
+import { readFileSync } from 'node:fs'
+import { NullDropClient } from '@nulldrop/sdk'
+
+const client = new NullDropClient({ apiKey: process.env.NULLDROP_API_KEY! })
+
+// Node doesn't have File by default – convert Buffer to File via undici or formdata-node as needed
+import { File } from 'undici'
+const data = readFileSync('./assets/logo.png')
+const file = new File([data], 'logo.png', { type: 'image/png' })
+
+const res = await client.upload(file)
+console.log(res.id, await client.getDownloadUrl(res.id))
+```
+
+## List / get / delete
+
+```ts
+const list = await client.listFiles({ page: 1, limit: 10 })
+const first = list.files[0]
+const details = await client.getFile(first.id)
+await client.deleteFile(first.id)
+```
+
+## Fluent helpers
+
+```ts
+const up = await client.upload(file)
+await up.getDetails()
+await up.delete()
+console.log(up.quickShare())
+console.log(up.getFormattedSize())
+```

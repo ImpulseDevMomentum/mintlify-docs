@@ -48,7 +48,8 @@
           {
             "group": "SDK Documentation",
             "pages": [
-              "sdk-reference/introduction"
+              "sdk-reference/introduction",
+              "sdk-reference/examples"
             ]
           },
           {

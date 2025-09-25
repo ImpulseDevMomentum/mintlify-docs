@@ -1,4 +1,81 @@
 ---
-title: "Introduction"
-description: "wow"
+title: "Null Drop SDK (TypeScript)"
+description: "Official client for Null Drop: upload, list, retrieve and delete files."
 ---
+
+## Installation
+
+```bash
+npm i @nulldrop/sdk
+# or
+yarn add @nulldrop/sdk
+```
+
+## Quick start
+
+```ts
+import { NullDropClient } from '@nulldrop/sdk'
+
+const client = new NullDropClient({ apiKey: process.env.NULLDROP_API_KEY! })
+
+// upload
+const fileInput = document.querySelector('input[type=file]') as HTMLInputElement
+const uploaded = await client.upload(fileInput.files![0])
+console.log(uploaded.id, uploaded.downloadUrl)
+
+// list
+const list = await client.listFiles({ page: 1, limit: 10 })
+// get
+const details = await client.getFile(uploaded.id)
+// delete
+await client.deleteFile(uploaded.id)
+```
+
+## Configuration
+
+```ts
+new NullDropClient({
+  apiKey: 'nd_...',           // required (falls back to env NULLDROP_API_KEY)
+  baseUrl: 'https://nulldrop.xyz', // optional (default)
+  apiVersion: 'v1',                // optional (default v1)
+  timeout: 15000,                  // ms, optional
+  retryAttempts: 3,                // optional
+  debug: false                     // SDK logs, optional
+})
+```
+
+## API
+
+- `upload(file: File): Promise<FluentUploadResult>` – uploads a file (multipart/form-data; field `file`), returns `id`, `downloadUrl`, `shareUrl`, `uploadedAt`, etc.
+- `listFiles({ page?, limit? })`
+- `getFile(id: string)`
+- `deleteFile(id: string)`
+- `getDownloadUrl(id: string)`
+- `getShareUrl(id: string)`
+- `getFileCount()`
+
+### Types (short)
+
+```ts
+type UploadResponse = {
+  success: boolean
+  data: {
+    id: string
+    filename: string
+    size: number
+    mimeType: string
+    downloadUrl: string
+    shareUrl: string
+    uploadedAt: string
+  }
+}
+```
+
+## Errors & rate limits
+
+- Limit headers: `X-RateLimit-Limit`, `X-RateLimit-Remaining`, `X-RateLimit-Reset`.
+- Common error codes: `UNAUTHORIZED`, `RATE_LIMITED`, `NO_FILE`, `INVALID_FILE_TYPE`, `FILE_TOO_LARGE`, `STORAGE_LIMIT_EXCEEDED`.
+
+<Card title="REST API examples" icon="code" href="/api-reference/introduction">
+  See the REST API details (OpenAPI, cURL/JS examples).
+</Card>
