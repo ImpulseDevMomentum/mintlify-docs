@@ -1,0 +1,98 @@
+---
+title: "Migrating to API v2"
+description: "Migration guide from v1 to v2 API"
+---
+
+## Overview
+
+API v2 is a performance-optimized version of v1 with the following changes:
+
+- Base URL: `/api/v1` → `/api/v2`
+- New `isPublic` parameter on upload
+- Fully backward compatible
+
+---
+
+## Endpoint Mapping
+
+| v1 Endpoint                       | v2 Endpoint                       |
+| --------------------------------- | --------------------------------- |
+| `POST /api/v1/upload`             | `POST /api/v2/upload`             |
+| `GET /api/v1/files`               | `GET /api/v2/files`               |
+| `GET /api/v1/files/{id}`          | `GET /api/v2/files/{id}`          |
+| `GET /api/v1/files/{id}/download` | `GET /api/v2/files/{id}/download` |
+| `DELETE /api/v1/files/{id}`       | `DELETE /api/v2/files/{id}`       |
+
+---
+
+## Upload Changes
+
+### New Parameter: `isPublic`
+
+```bash
+POST /api/v2/upload
+Content-Type: multipart/form-data
+
+file: <binary>          # Required
+isPublic: true|false    # Optional, defaults to true
+```
+
+**Example:**
+
+```bash
+curl -X POST https://nulldrop.xyz/api/v2/upload \
+  -H "Authorization: Bearer YOUR_API_KEY" \
+  -F "file=@document.pdf" \
+  -F "isPublic=false"
+```
+
+---
+
+## Response Changes
+
+### v1 Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "abc123",
+    "filename": "image.png",
+    "size": 102400,
+    "mimeType": "image/png",
+    "downloadUrl": "https://nulldrop.xyz/api/v1/files/abc123/download",
+    "shareUrl": "https://nulldrop.xyz/share/xyz789",
+    "uploadedAt": "2025-10-09T12:00:00.000Z"
+  }
+}
+```
+
+### v2 Response
+
+```json
+{
+  "success": true,
+  "data": {
+    "id": "abc123",
+    "filename": "image.png",
+    "size": 102400,
+    "mimeType": "image/png",
+    "downloadUrl": "https://nulldrop.xyz/api/v2/files/abc123/download",
+    "shareUrl": "https://nulldrop.xyz/share/xyz789",
+    "isPublic": true,
+    "uploadedAt": "2025-10-09T12:00:00.000Z"
+  },
+}
+```
+
+**New fields:**
+
+- `isPublic` (boolean): File visibility status
+
+---
+
+## Breaking Changes
+
+None. v2 is fully backward compatible.
+
+---

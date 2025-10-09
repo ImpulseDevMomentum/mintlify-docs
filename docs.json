@@ -17,7 +17,8 @@
             "group": "Getting started",
             "pages": [
               "index",
-              "quickstart"
+              "quickstart",
+              "migrating-to-v2"
             ]
           }
         ]
@@ -26,13 +27,14 @@
         "tab": "API Reference",
         "groups": [
           {
-            "group": "API Documentation",
+            "group": "Null Drop API",
             "pages": [
-              "api-reference/introduction"
+              "api-reference/introduction",
+              "api-reference/v2-introduction"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Endpoints",
             "pages": [
               "api-reference/endpoint/get",
               "api-reference/endpoint/create",
@@ -50,6 +52,15 @@
             "pages": [
               "sdk-reference/introduction",
               "sdk-reference/examples"
+            ]
+          },
+          {
+            "group": "Endpoint examples",
+            "pages": [
+              "sdk-reference/endpoint/get",
+              "sdk-reference/endpoint/create",
+              "sdk-reference/endpoint/delete",
+              "sdk-reference/endpoint/webhook"
             ]
           }
         ]

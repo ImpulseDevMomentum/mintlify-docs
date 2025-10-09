@@ -1,0 +1,27 @@
+---
+title: "Null Drop API v2"
+description: "Reference for the Null Drop v2 REST API"
+---
+
+## Overview
+
+Null Drop v2 provides a REST API to upload and manage files with performance optimizations.
+
+- Base URL: `https://nulldrop.xyz/api/v2`
+- Auth: Bearer token (pass your API key in the `Authorization` header)
+
+```http
+Authorization: Bearer <your_api_key>
+```
+
+## Endpoints
+
+- `POST /upload` – Upload a file (multipart form-data, fields: `file`, `isPublic`)
+- `GET /files` – List your files
+- `GET /files/{id}` – Get a single file
+- `GET /files/{id}/download` – Download a file
+- `DELETE /files/{id}` – Delete a file
+
+## What's New in v2
+
+- **`isPublic parameter`**: Control file visibility during upload (defaults to `true`)
