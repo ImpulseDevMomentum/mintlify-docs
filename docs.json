@@ -34,12 +34,18 @@
             ]
           },
           {
-            "group": "Endpoints",
+            "group": "v1 Endpoints",
             "pages": [
               "api-reference/endpoint/get",
               "api-reference/endpoint/create",
               "api-reference/endpoint/delete",
               "api-reference/endpoint/webhook"
+            ]
+          },
+          {
+            "group": "v2 Endpoints",
+            "pages": [
+              "api-reference/v2-openapi"
             ]
           }
         ]
