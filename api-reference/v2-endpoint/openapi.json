@@ -96,7 +96,7 @@
     "/upload/bulk": {
       "post": {
         "summary": "Upload multiple files",
-        "description": "Upload up to 10 files simultaneously with parallel processing",
+        "description": "Upload up to 50 files simultaneously with parallel processing",
         "security": [
           {
             "bearerAuth": []
@@ -116,7 +116,7 @@
                       "type": "string",
                       "format": "binary"
                     },
-                    "description": "Array of files to upload (max 10)"
+                    "description": "Array of files to upload (max 50)"
                   },
                   "isPublic": {
                     "type": "string",
