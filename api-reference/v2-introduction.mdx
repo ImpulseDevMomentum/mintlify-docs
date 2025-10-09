@@ -17,11 +17,14 @@ Authorization: Bearer <your_api_key>
 ## Endpoints
 
 - `POST /upload` – Upload a file (multipart form-data, fields: `file`, `isPublic`)
+- `POST /upload/bulk` – Upload multiple files (up to 50 files simultaneously)
 - `GET /files` – List your files
 - `GET /files/{id}` – Get a single file
 - `GET /files/{id}/download` – Download a file
 - `DELETE /files/{id}` – Delete a file
+- `DELETE /files/bulk` – Delete multiple files (up to 50 files simultaneously)
 
-## What's New in v2
+## What's New in v2?
 
 - **`isPublic parameter`**: Control file visibility during upload (defaults to `true`)
+- **`_perf field`**: Response time tracking in milliseconds

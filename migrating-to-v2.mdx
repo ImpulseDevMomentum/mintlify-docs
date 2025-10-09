@@ -9,19 +9,22 @@ API v2 is a performance-optimized version of v1 with the following changes:
 
 - Base URL: `/api/v1` → `/api/v2`
 - New `isPublic` parameter on upload
+- New `_perf` field in responses
 - Fully backward compatible
 
 ---
 
 ## Endpoint Mapping
 
-| v1 Endpoint                       | v2 Endpoint                       |
-| --------------------------------- | --------------------------------- |
-| `POST /api/v1/upload`             | `POST /api/v2/upload`             |
-| `GET /api/v1/files`               | `GET /api/v2/files`               |
-| `GET /api/v1/files/{id}`          | `GET /api/v2/files/{id}`          |
+| v1 Endpoint | v2 Endpoint |
+|-------------|-------------|
+| `POST /api/v1/upload` | `POST /api/v2/upload` |
+| N/A | `POST /api/v2/upload/bulk` (NEW) |
+| `GET /api/v1/files` | `GET /api/v2/files` |
+| `GET /api/v1/files/{id}` | `GET /api/v2/files/{id}` |
 | `GET /api/v1/files/{id}/download` | `GET /api/v2/files/{id}/download` |
-| `DELETE /api/v1/files/{id}`       | `DELETE /api/v2/files/{id}`       |
+| `DELETE /api/v1/files/{id}` | `DELETE /api/v2/files/{id}` |
+| N/A | `DELETE /api/v2/files/bulk` (NEW) |
 
 ---
 
@@ -82,12 +85,13 @@ curl -X POST https://nulldrop.xyz/api/v2/upload \
     "isPublic": true,
     "uploadedAt": "2025-10-09T12:00:00.000Z"
   },
+  "_perf": 45
 }
 ```
 
 **New fields:**
-
 - `isPublic` (boolean): File visibility status
+- `_perf` (number): Request duration in milliseconds
 
 ---
 
