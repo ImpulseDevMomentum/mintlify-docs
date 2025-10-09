@@ -45,7 +45,11 @@
           {
             "group": "v2 Endpoints",
             "pages": [
-              "api-reference/v2-openapi"
+              "api-reference/v2-endpoint/upload",
+              "api-reference/v2-endpoint/list",
+              "api-reference/v2-endpoint/get",
+              "api-reference/v2-endpoint/download",
+              "api-reference/v2-endpoint/delete"
             ]
           }
         ]
