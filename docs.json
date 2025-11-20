@@ -18,7 +18,8 @@
             "pages": [
               "index",
               "quickstart",
-              "migrating-to-v2"
+              "migrating-to-v2",
+              "allowed-file-types"
             ]
           }
         ]
